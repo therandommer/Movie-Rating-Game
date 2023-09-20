@@ -15,9 +15,9 @@ fetch(giphyAPIUrl)
     .then(function (response) {
       return response.json();
     })
-    .then(function(contnet) //giphy response
+    .then(function(content) //giphy response
     {
-        var imageUrl = content.data.images.original.url;
+        console.log(content.data);
         
     })
     .catch(error =>
