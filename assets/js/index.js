@@ -11,24 +11,30 @@ let omdbMovieSearch = "Matrix";
 let omdbAPIKey = "3646905f";
 let omdbAPIUrl = `http://www.omdbapi.com/?apikey=${omdbAPIKey}&s=${omdbMovieSearch}`;
 
-function giphyResponse(giphySearch)
-{
-    console.log("giphy response" + JSON.stringify(giphySearch));
-}
-function omdbResponse(omdbSearch)
-{
-    console.log("omdb response" + JSON.stringify(omdbSearch));
-}
-
 fetch(giphyAPIUrl)
     .then(function (response) {
       return response.json();
     })
-    .then(giphyResponse);
+    .then(function(contnet) //giphy response
+    {
+        var imageUrl = content.data.images.original.url;
+        
+    })
+    .catch(error =>
+    {
+        console.error("Error in giphyAPI");
+    });
 
 console.log(omdbAPIUrl);
 fetch(omdbAPIUrl)
     .then(function (response) {
         return response.json();
     })
-    .then(omdbResponse);
+    .then(function(content) //omdb response
+    {
+        
+    })
+    .catch(error =>
+    {
+        console.error("Error in omdbAPI");
+    });;
