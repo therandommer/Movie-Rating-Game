@@ -7,9 +7,9 @@ let giphySearchTerm = "Matrix"; //what to search
 let giphyAPIKey = "2XZcXmpvYUadnnAv7e65tvDtSeK2VHSC";
 let giphyAPIUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&q=${giphySearchTerm}&limit=${giphySearchNumber}&offset=0&rating=pg-13&lang=en&bundle=messaging_non_clips`;
 //---OMDB---
-let omdbSearchTerm = "Matrix";
+let omdbMovieSearch = "Matrix";
 let omdbAPIKey = "3646905f";
-let omdbAPIUrl = `http://www.omdbapi.com/?apikey=${omdbAPIKey}?t=${omdbSearchTerm}`;
+let omdbAPIUrl = `http://www.omdbapi.com/?apikey=${omdbAPIKey}&s=${omdbMovieSearch}`;
 
 function giphyResponse(giphySearch)
 {
@@ -26,8 +26,9 @@ fetch(giphyAPIUrl)
     })
     .then(giphyResponse);
 
+console.log(omdbAPIUrl);
 fetch(omdbAPIUrl)
     .then(function (response) {
-      return response.json();
+        return response.json();
     })
     .then(omdbResponse);
