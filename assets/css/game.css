@@ -38,6 +38,7 @@ body, html {
 
 /*div containing score and timer*/
 #topRow {
+  margin-top: 3px;
     border: 4px solid black;
     background-image: linear-gradient(
         rgba(66, 56, 206, 0.3) 0%,
@@ -56,7 +57,7 @@ body, html {
 }
 
 /*format time countdown*/
-.timer {
+.lifespan {
     font-weight: bold;
     font-size: 40px;
     padding: 5px;
