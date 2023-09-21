@@ -95,6 +95,19 @@ body, html {
     display : none !important;
 }
 
+#vs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  font-style: italic;
+  font-size: 70px;
+  background-image: radial-gradient(
+    rgba(247, 113, 218, 0.9),
+    rgba(255, 251, 41, 0.9)
+  );
+}
+
 /*div holding feedback gif aligning it centrally and padding from above/below*/
 #feedbackGif {
   padding-top: 10px;
