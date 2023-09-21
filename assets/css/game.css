@@ -1,21 +1,33 @@
+/*div containing score and timer*/
 #topRow {
-    
+    border: 4px solid black;
+    background-image: linear-gradient(
+        rgba(66, 56, 206, 0.3) 0%,
+        rgba(71, 196, 245, 0.6) 100%
+      );
 }
 
+/*format score counter*/
 #scoreCount {
     font-weight: bold;
     font-size: 40px;
-    padding: 10px;
+    padding: 5px;
     margin: 15px;
+    background-color: white;
+    border: 2px solid grey;
 }
 
+/*format time countdown*/
 .timer {
     font-weight: bold;
     font-size: 40px;
-    padding: 10px;
+    padding: 5px;
     margin: 15px;
+    background-color: white;
+    border: 2px solid grey;
 }
 
+/*class for both instructions of how to play and feedback text*/
 .heading {
     border: 2px solid black;
     margin-left: 25%;
@@ -25,6 +37,20 @@
     margin-bottom: 5px;
 }
 
+/*background for instructions text*/
+#instructionDiv{
+  background-image: radial-gradient(
+    rgba(81, 212, 5, 0.9),
+    rgba(229, 255, 0, 0.9));
+  );
+}
+/*format unique to instructional text*/
+#instructionText {
+    font-weight: bold;
+    color: antiquewhite;
+}
+
+/*hide class for feedback elements*/
 .hide {
     display : none !important;
 }
