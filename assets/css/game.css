@@ -1,3 +1,4 @@
+/*div containing score and timer*/
 #topRow {
     border: 4px solid black;
     background-image: linear-gradient(
@@ -6,6 +7,7 @@
       );
 }
 
+/*format score counter*/
 #scoreCount {
     font-weight: bold;
     font-size: 40px;
@@ -15,6 +17,7 @@
     border: 2px solid grey;
 }
 
+/*format time countdown*/
 .timer {
     font-weight: bold;
     font-size: 40px;
@@ -24,6 +27,7 @@
     border: 2px solid grey;
 }
 
+/*class for both instructions of how to play and feedback text*/
 .heading {
     border: 2px solid black;
     margin-left: 25%;
@@ -33,10 +37,12 @@
     margin-bottom: 5px;
 }
 
+/*format unique to instructional text*/
 #instructionText {
-  
+
 }
 
+/*hide class for feedback elements*/
 .hide {
     display : none !important;
 }
