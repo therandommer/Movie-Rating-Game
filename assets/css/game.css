@@ -1,5 +1,44 @@
+/* Set height of body and the document to 100% to enable "full page tabs" */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+#Home {background-color: red;}
+#News {background-color: green;}
+#Contact {background-color: blue;}
+#About {background-color: orange;}
+
+
 /*div containing score and timer*/
 #topRow {
+  margin-top: 3px;
     border: 4px solid black;
     background-image: linear-gradient(
         rgba(66, 56, 206, 0.3) 0%,
@@ -18,7 +57,7 @@
 }
 
 /*format time countdown*/
-.timer {
+.lifespan {
     font-weight: bold;
     font-size: 40px;
     padding: 5px;
@@ -41,9 +80,10 @@
 #instructionDiv{
   background-image: radial-gradient(
     rgba(81, 212, 5, 0.9),
-    rgba(229, 255, 0, 0.9));
+    rgba(229, 255, 0, 0.9)
   );
 }
+
 /*format unique to instructional text*/
 #instructionText {
     font-weight: bold;
@@ -55,39 +95,17 @@
     display : none !important;
 }
 
-/* Set height of body and the document to 100% to enable "full page tabs" */
-body, html {
-    height: 100%;
-    margin: 0;
-    font-family: Arial;
-  }
-  
-  /* Style tab links */
-  .tablink {
-    background-color: #555;
-    color: white;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
-    width: 25%;
-  }
-  
-  .tablink:hover {
-    background-color: #777;
-  }
-  
-  /* Style the tab content (and add height:100% for full page content) */
-  .tabcontent {
-    color: white;
-    display: none;
-    padding: 100px 20px;
-    height: 100%;
-  }
-  
-  #Home {background-color: red;}
-  #News {background-color: green;}
-  #Contact {background-color: blue;}
-  #About {background-color: orange;}
+/*div holding feedback gif aligning it centrally and padding from above/below*/
+#feedbackGif {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*border for pulled gif*/
+#feedbackGif img {
+  padding: 2px; 
+  border: 2px solid orangered;
+}
