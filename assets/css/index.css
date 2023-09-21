@@ -9,3 +9,35 @@
 .description {
     margin-left: 30px;
 }
+
+/* body {
+    min-height: 100vh;
+    background: url(/assets/img/movie-background.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+/* div.table {
+    width: 82vw;
+    height: 90vh;
+    background-color: #fff5;
+
+} */
+
+thead {
+    font-weight: bold;
+}
+
+table,
+th,
+td {
+    padding: 1rem;
+
+}
+
+.table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
