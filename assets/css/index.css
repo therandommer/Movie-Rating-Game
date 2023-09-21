@@ -9,3 +9,7 @@
 .description {
     margin-left: 30px;
 }
+
+thead {
+    font-weight: bold;
+}
