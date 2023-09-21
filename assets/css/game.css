@@ -30,7 +30,7 @@ body, html {
     height: 100%;
   }
   
-  #Home {background-color: red;}
-  #News {background-color: green;}
-  #Contact {background-color: blue;}
-  #About {background-color: orange;}
+  #MovieRatingGame {background-color: red;}
+  #Movies {background-color: green;}
+  #Membership {background-color: blue;}
+  #Rating  {background-color: orange;}
