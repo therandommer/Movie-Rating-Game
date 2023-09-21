@@ -10,6 +10,9 @@ let testGiphyAPIUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKe
 let omdbMovieSearch = "The Matrix";
 let omdbAPIKey = "3646905f";
 let testOmdbAPIUrl = `http://www.omdbapi.com/?apikey=${omdbAPIKey}&t=${omdbMovieSearch}`;
+//Object references for OMDB call
+let movie1TitleText = $("#filmOneName");
+let movie2TitleText = $("#filmTwoName");
 
 function populateFeedback(gif) {
     let giphyAPIUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&q=${gif}&limit=${giphySearchNumber}&offset=0&rating=pg-13&lang=en&bundle=messaging_non_clips`;
@@ -79,8 +82,9 @@ function populateFilms(filmNumber) {
         .then(function (content) //omdb response
         {
             console.log(content);
-            //check if the id is valid and the content has a rating and the content has a poster to display. Also (tries to) filter NSFW content
-            if(content.response = true && content.imdbRating != "N/A" && content.Poster != "N/A" && content.Genre != "Adult" && content.Rated != "R")
+            //Checks if the id is valid and the content has a rating and the content has a poster to display. Also (tries to) filter NSFW content.
+            //And filters by films that have had more than 40 votes
+            if(content.response = true && content.imdbRating != "N/A" && content.imdbVotes > 40 && content.Poster != "N/A" && content.Genre != "Adult" && content.Rated != "R")
             {
                 //referencing new image to create
                 let thisImage = $("<img id='temp'>");
@@ -88,14 +92,17 @@ function populateFilms(filmNumber) {
                 //setting image attributes
                 thisImage.attr('src', content.Poster);
                 thisImage.attr('alt', content.Title);
+                
 
                 //placing the new image on the site
                 if (filmNumber === 1) //place poster on the left
                 {
+                    movie1TitleText.text(content.Title);
                     $("#filmOne").prepend(thisImage);
                 }
                 else if (filmNumber === 2) //place poster on the right
                 {
+                    movie2TitleText.text(content.Title);
                     $("#filmTwo").prepend(thisImage);
                 }
             }
