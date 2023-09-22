@@ -8,7 +8,7 @@ let giphyAPIKey = "2XZcXmpvYUadnnAv7e65tvDtSeK2VHSC";
 let testGiphyAPIUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&q=${giphySearchTerm}&limit=${giphySearchNumber}&offset=0&rating=pg-13&lang=en&bundle=messaging_non_clips`;
 //---OMDB---
 let omdbMovieSearch = "The Matrix";
-let omdbAPIKey = "3646905f";
+let omdbAPIKey = "81729a7c";
 let testOmdbAPIUrl = `http://www.omdbapi.com/?apikey=${omdbAPIKey}&t=${omdbMovieSearch}`;
 
 function populateFeedback(gif) {
