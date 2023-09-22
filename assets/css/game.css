@@ -101,6 +101,7 @@ body, html {
   font-weight: bold;
 }
 
+
 /*format centre column between film posters*/
 #centreColumn{
   display: flex;
@@ -146,5 +147,13 @@ body, html {
   .heading {
     margin-left: 5%;
     margin-right: 5%;
+  }
+
+  #scoreCount {
+    font-size: 20px;
+  }
+
+  .lifespan {
+      font-size: 20px;
   }
 }
