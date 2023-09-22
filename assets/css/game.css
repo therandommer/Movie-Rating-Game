@@ -95,6 +95,11 @@ body, html {
     display : none !important;
 }
 
+.btn {
+  width: 100%; 
+  margin-bottom: 3px;
+}
+
 /*hover feature to change button colour*/
 .btn-warning:hover{
   color: red !important;

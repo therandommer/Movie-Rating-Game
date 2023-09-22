@@ -93,10 +93,12 @@ function populateFilms(filmNumber) {
                 if (filmNumber === 1) //place poster on the left
                 {
                     $("#filmOne").prepend(thisImage);
+                    $("#filmOneBtn").prepend(content.Title);
                 }
                 else if (filmNumber === 2) //place poster on the right
                 {
                     $("#filmTwo").prepend(thisImage);
+                    $("#filmTwoBtn").prepend(content.Title);
                 }
             }
             else
