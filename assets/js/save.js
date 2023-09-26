@@ -55,3 +55,6 @@ let clearButton = document.querySelector('#clearButton');
 clearButton.addEventListener("click", clearScores);
 
 displayHighScores ( );
+
+let submitButton = document.querySelector("#submit");
+submitButton.addEventListener("click", storeHighScore);
