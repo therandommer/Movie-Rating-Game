@@ -22,7 +22,9 @@ const feedbackGif = $("#feedbackGif");
 
 function setRating1(rating)
 {
+
     rating1 = rating;
+    
 }
 function setRating2(rating)
 {
@@ -38,12 +40,12 @@ function revealFeedback(willHide, isCorrect)
         //setting variables, etc. before revealing objects
         if(isCorrect)
         {
-            feedbackText.text = "You guessed correctly!";
+            feedbackText.text(`You guessed correctly!\n ${rating1} VS ${rating2}`);
             //!happy gif logic
         }
         else
         {
-            feedbackText.text = "You guessed incorrectly!";
+            feedbackText.text(`You guessed incorrectly!\n ${rating1} VS ${rating2}`);
             //!sad gif logic
         }
         feedbackText.removeClass("hide");
@@ -82,10 +84,8 @@ function resetState()
 {
     lives = defaultLives;
     score = defaultScore;
-    lifeText.text = lives;
-    console.log("Life text value is: " + lifeText.text);
-    scoreText.text = score;
-    console.log("Score text value is: " + scoreText.text);
+    lifeText.text(lives);
+    scoreText.text(score);
     revealFeedback(false, true);
     revealMovies(false);
 }
@@ -94,11 +94,11 @@ function resetState()
 function startGeneration()
 {
     //!commented out the following so I can test other things
-    //generateRandomFilm();
-    //populateFeedback("Congratulations");
-    //populateFeedback("Try again next time");
-    //populateFilms(1);
-    //populateFilms(2);   
+    generateRandomFilm();
+    populateFeedback("Congratulations");
+    //populateFeedback("The Avengers");
+    populateFilms(1);
+    populateFilms(2); 
 }
 //will handle logic for correct and incorrect guesses.
 function filmGuessed(isCorrect)
@@ -107,18 +107,22 @@ function filmGuessed(isCorrect)
     {
         console.log("player guessed correct");
         score += guessValue;
-        scoreText.text = score;
-        console.log("New score: " + scoreText.text);
+        scoreText.text(score);
+        console.log("New score: " + score);
         revealFeedback(false, true);
     }
     else
     {
         console.log("player guessed incorrect");
         lives--;
-        lifeText.text = lives;
-        console.log("New lives: " + lifeText.text);
-        revealFeedback(false, false);
-        if(lives === 0)
+        if(lives>0)
+        {
+            lifeText.text(lives);
+            console.log("New lives: " + lives);
+            revealFeedback(false, false);
+        }
+        
+        else if(lives <= 0)
         {
             console.log("game over");
         }

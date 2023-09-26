@@ -40,7 +40,7 @@ function populateFeedback(gif) {
 function generateRandomFilm() {
     let randomId = Math.floor(Math.random() * 1000000) + 1;
     if (randomId.toString().length)
-    //prepending 0's to the id to ensure the id fits imdb/omdb formatting styles.
+        //prepending 0's to the id to ensure the id fits imdb/omdb formatting styles.
         switch (randomId.toString().length) {
             case 1:
                 randomId = "000000" + randomId;
@@ -80,8 +80,7 @@ function populateFilms(filmNumber) {
         {
             console.log(content);
             //check if the id is valid and the content has a rating and the content has a poster to display. Also (tries to) filter NSFW content
-            if(content.response = true && content.imdbRating != "N/A" && content.Poster != "N/A" && content.Genre != "Adult" && content.Rated != "R")
-            {
+            if (content.response = true && content.imdbRating > 0.1 && content.Poster != "N/A" && content.Genre != "Adult" && content.Rated != "R") {
                 //referencing new image to create
                 let thisImage = $("<img id='temp'>");
 
@@ -94,15 +93,16 @@ function populateFilms(filmNumber) {
                 {
                     $("#filmOne").prepend(thisImage);
                     $("#filmOneBtn").prepend(content.Title);
+                    setRating1(content.imdbRating);
                 }
                 else if (filmNumber === 2) //place poster on the right
                 {
                     $("#filmTwo").prepend(thisImage);
                     $("#filmTwoBtn").prepend(content.Title);
+                    setRating2(content.imdbRating);
                 }
             }
-            else
-            {
+            else {
                 populateFilms(filmNumber); //regenerate the id and try again.
                 console.log("Regenerating film");
             }
@@ -111,9 +111,3 @@ function populateFilms(filmNumber) {
             console.error("Error in omdbAPI");
         });
 }
-
-generateRandomFilm();
-populateFeedback("Congratulations");
-//populateFeedback("The Avengers");
-populateFilms(1);
-populateFilms(2);
