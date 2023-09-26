@@ -2,7 +2,7 @@ console.log("HI!");
 
 //API Integration
 //---GIPHY---
-let giphySearchNumber = "1"; //how many results to return from giphy
+let giphySearchNumber = 10; //how many results to return from giphy
 let giphySearchTerm = "The Matrix"; //what to search FOR TESTING
 let giphyAPIKey = "2XZcXmpvYUadnnAv7e65tvDtSeK2VHSC";
 //---OMDB---
@@ -21,10 +21,12 @@ function populateFeedback(gif) {
             console.log(content.data);
             //referencing new image to create
             let thisImage = $("<img id='tempGif'>");
-
-            //setting image attributes
-            thisImage.attr('src', content.data[0].images.fixed_height.url);
-            thisImage.attr('alt', content.data[0].title);
+            //generates number between 0 and search amount - 1
+            let chosenGif = Math.floor(Math.random() * (giphySearchNumber - 1));
+            console.log("random gif is: " + chosenGif);
+            //setting image attributes to the randomly chosen gif
+            thisImage.attr('src', content.data[chosenGif].images.fixed_height.url);
+            thisImage.attr('alt', content.data[chosenGif].title);
 
             //placing the new image on the site
             $("#feedbackGif").append(thisImage); //
