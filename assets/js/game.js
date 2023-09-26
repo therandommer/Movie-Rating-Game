@@ -16,7 +16,7 @@ const filmTwoButton = $("#filmTwoBtn");
 const lifeText = $("#lives");
 const scoreText = $("#score");
 const feedbackText = $("#feedbackText");
-const feedbackGif = $("feedbackGif");
+const feedbackGif = $("#feedbackGif");
 
 //---Functions and logic---
 
@@ -71,7 +71,7 @@ function revealMovies(willHide)
     }
     else
     {
-        movies.removeClass("hide");
+        movies.addClass("hide");
     }
     //!reveal the movies after generation.
     //!hide the movies on game over
