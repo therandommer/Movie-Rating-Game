@@ -50,12 +50,14 @@ function revealFeedback(willHide, isCorrect)
         }
         feedbackText.removeClass("hide");
         feedbackGif.removeClass("hide");
+        setTimeout(function(){revealFeedback(willHide, isCorrect);}), feedbackTimer; //will hide the elements after a set time
     }
     else
     {
         feedbackText.addClass("hide");
         feedbackGif.addClass("hide");
     }
+    
 }
 //remove the movie element, called before each new movie generation call.
 function removeMovies()
