@@ -1,6 +1,7 @@
 //variable declaration
 let rating1 = 5; //!set to this value just to test game logic
 let rating2 = 0;
+let feedbackTimer = 5000; //time in ms that the feedback will be displayed on the screen for.
 
 //player variables
 let defaultLives = 5;
@@ -27,23 +28,57 @@ function setRating2(rating)
 {
     rating2 = rating;
 }
-//if willHide is true, will hide the feedbackElements instead of reveal it.
-function revealFeedback(willHide)
+//if willHide is true, will hide the feedbackElements instead of reveal it. isCorrect determines if the gif to reveal is happy or sad, and determines what the feedback text will say
+function revealFeedback(willHide, isCorrect)
 {
     //!enable the gif, do a search for happy or sad, hide after X seconds
     //!enable the text, fill it with correct/incorrect, hide after X seconds
-
+    if(!willHide)
+    {
+        //setting variables, etc. before revealing objects
+        if(isCorrect)
+        {
+            feedbackText.text = "You guessed correctly!";
+            //!happy gif logic
+        }
+        else
+        {
+            feedbackText.text = "You guessed incorrectly!";
+            //!sad gif logic
+        }
+        feedbackText.removeClass("hide");
+        feedbackGif.removeClass("hide");
+    }
+    else
+    {
+        feedbackText.addClass("hide");
+        feedbackGif.addClass("hide");
+    }
 }
-
+//remove the movie element, called before each new movie generation call.
+function removeMovies()
+{
+    let filmToRemove = $(".temp"); //should remove any element with the id of temp
+    filmToRemove.remove();
+}
 //if willHide is true, will hide the main game elements instead of reveal it.
 function revealMovies(willHide)
 {
+    let movies = $(".temp");
+    if(!willHide)
+    {
+        movies.removeClass("hide");
+    }
+    else
+    {
+        movies.removeClass("hide");
+    }
     //!reveal the movies after generation.
     //!hide the movies on game over
 }
 
-//resets any variables on the screen to their correct values
-function resetVariables()
+//resets any elements and variables on the screen to their default values
+function resetState()
 {
     lives = defaultLives;
     score = defaultScore;
@@ -51,6 +86,8 @@ function resetVariables()
     console.log("Life text value is: " + lifeText.text);
     scoreText.text = score;
     console.log("Score text value is: " + scoreText.text);
+    revealFeedback(false, true);
+    revealMovies(false);
 }
 
 //reusable start generation function. Can be called every time the films need to be regenerated (ie after button click, etc.)
@@ -72,6 +109,7 @@ function filmGuessed(isCorrect)
         score += guessValue;
         scoreText.text = score;
         console.log("New score: " + scoreText.text);
+        revealFeedback(false, true);
     }
     else
     {
@@ -79,6 +117,7 @@ function filmGuessed(isCorrect)
         lives--;
         lifeText.text = lives;
         console.log("New lives: " + lifeText.text);
+        revealFeedback(false, false);
         if(lives === 0)
         {
             console.log("game over");
@@ -130,6 +169,6 @@ filmTwoButton.on("click", function(event)
 
 //on initialisation logic
 startGeneration();
-resetVariables();
+resetState();
 revealMovies(false); //reveals the movie elements
 revealFeedback(true); //hides any feedback elements

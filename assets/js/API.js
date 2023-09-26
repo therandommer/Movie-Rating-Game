@@ -120,7 +120,7 @@ function generateFilmContent(filmNumber, data)
         filmImage = "#filmTwo"
         setRating2(data.imdbRating);
     }
-    let thisImage = $("<img id='temp'>");
+    let thisImage = $("<img class='temp'>");
 
     //setting image attributes
     thisImage.attr('src', data.Poster);
