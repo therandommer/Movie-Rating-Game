@@ -12,8 +12,8 @@ let omdbAPIKey = "3646905f";
 let omdbAPIKey2 = "81729a7c";
 //let testOmdbAPIUrl = `http://www.omdbapi.com/?apikey=${omdbAPIKey}&t=${omdbMovieSearch}`;
 //Object references for OMDB call
-let movie1TitleText = $("#filmOneName");
-let movie2TitleText = $("#filmTwoName");
+let film1TitleText = $("#filmOneName");
+let film2TitleText = $("#filmTwoName");
 
 function populateFeedback(gif) {
     let giphyAPIUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&q=${gif}&limit=${giphySearchNumber}&offset=0&rating=pg-13&lang=en&bundle=messaging_non_clips`;
@@ -42,23 +42,10 @@ function populateFeedback(gif) {
 }
 
 //create 5 random strings
-function generateRandomFilm() {
-    const generateRandom = () =>{
-        const numbers = new Set();
-        while(numbers.size < 7 ){
-            const randomNumber = Math.floor(Math.random() * 1000000);
-            console.log(randomNumber);
-            numbers.add(`0${randomNumber}`);
-        }
-        return [...numbers];
-    }
+function generateRandomFilm() { 
     //console.log("random number",generateRandom())
    return new  Array(5).fill(0).map(()=>{
         let randomId = Math.floor(Math.random() * 1000000);
-        console.log(randomId);
-        if(randomId.toString().length > 6){
-            randomId = Math.floor(Math.random() * 1000000);
-        }
         //prepending 0's to the id to ensure the id fits imdb/omdb formatting styles.
         switch (randomId.toString().length) {
             case 1:
@@ -79,6 +66,8 @@ function generateRandomFilm() {
             case 6:
                 randomId = "0" + randomId;
                 break;
+            case 7: //just in case the random is 1million+
+                break;
             default:
                 console.error("Incorrect random length");
                 break;
@@ -89,97 +78,88 @@ function generateRandomFilm() {
 }
 async function getFilmList()
 {
+    //generates a list of random films at once
     let allFilms = generateRandomFilm();
-    // let omdbAPIURL = `http://www.omdbapi.com/?apikey=${omdbAPIKey2}&i=${searchTerm}`;
-    // console.log("OMDB API URL = " + omdbAPIURL);
 
-    // const alFilms = [searchTerm];
-
+    //creates a map out of the films generated above and fetches each film.
     const requestFilms = allFilms.map(async (randomValue)=>{
-        let omdbAPIURL = `http://www.omdbapi.com/?apikey=${omdbAPIKey2}&i=${randomValue}`;
+        let omdbAPIURL = `http://www.omdbapi.com/?apikey=${omdbAPIKey}&i=${randomValue}`;
 
         return await fetch(omdbAPIURL);
     });
     console.log(requestFilms)
 
+    //wait till the above film fetches are returned
     const allResponse = await Promise.all(requestFilms);
-
+    //translates each film into a json object
     const parseResponse = allResponse.map(async(response)=> await response.json());
 
-    const data = await Promise.all(parseResponse);
+    let data = await Promise.all(parseResponse);
+    
+    console.log(`Film list data is: ${data}`);
     return data;
 }
+
+//filmNumber determines if the film will be set to the left(1) or the right(2).
+//data will contain the omdb API data fed in from the populateFilms function
+function generateFilmContent(filmNumber, data)
+{
+    let filmText = "";
+    let filmImage = "";
+    
+    //left side logic
+    if(filmNumber === 1)
+    {
+        filmText = "film1TitleText";
+        filmImage = "#filmOne"
+        setRating1(data.imdbRating);
+    }
+    else //right side logic
+    {
+        filmText = "film2TitleText";
+        filmImage = "#filmTwo"
+        setRating2(data.imdbRating);
+    }
+    let thisImage = $("<img id='temp'>");
+
+    //setting image attributes
+    thisImage.attr('src', data.Poster);
+    thisImage.attr('alt', data.Title);
+    
+    $(filmImage).prepend(thisImage);
+    filmText.text(data.Title);
+}
+
 //film = search query, filmNumber = if it will populate filmOne(1) or filmTwo(2)
 async function populateFilms(filmNumber) {
+    
+    //generates the data to be used for the below functions. All returned as json objects
     let data = getFilmList();
 
     console.log("Data is: " + data);
 
-    let validMovieFound = false;
+    let validMovieFound = false; //bool to check if we find a valid film
 
     while (!validMovieFound)
     {
-        const randomMovie = data.find(movie=>movie.imdbRating != "N/A" && movie.imdbVotes > 40 && movie.Poster != "N/A");
-        console.log("Random movie array is:" + randomMovie);
-        if(Array.isArray(randomMovie))
-        {
-            validMovieFound = true;
-            console.log("A movie was found");
-        }
-        else
-        {
-            getFilmList();
-        }
+        //!data.find does not work, why?
+        // const randomMovie = data.find(movie=>movie.imdbRating != "N/A" && movie.imdbVotes > 40 && movie.Poster != "N/A");
+        // let chosenMovie = "";
+        // console.log("Found in while loop: " + randomMovie);
+        // if(Array.isArray(randomMovie)) //does the array contain a film with the specified criteria?
+        // {
+        //     validMovieFound = true; //allows the code to move on
+        //     chosenMovie = randomMovie; //!Preferably set to the film that procs the isArray logic
+        //     console.log("A movie was found");
+        // }
+        // else //try again
+        // {
+        //     console.log("Trying again");
+        //     getFilmList();
+        // }
     }
     
 
- console.log(randomMovie);
-
-
-    // fetch(omdbAPIURL)
-    //     .then(function (response) {
-    //         return response.json();
-    //     })
-    //     .then(function (content) //omdb response
-    //     {
-    //         console.log(content);
-    //         //Checks if the id is valid and the content has a rating and the content has a poster to display. Also (tries to) filter NSFW content.
-    //         //And filters by films that have had more than 40 votes
-    //         if(content.response = true && content.imdbRating != "N/A" && content.imdbVotes > 40 && content.Poster != "N/A" && content.Genre != "Adult" && content.Rated != "R" && content.Rated != "N/A")
-    //         {
-    //             //referencing new image to create
-    //             let thisImage = $("<img id='temp'>");
-
-    //             //setting image attributes
-    //             thisImage.attr('src', content.Poster);
-    //             thisImage.attr('alt', content.Title);
-                
-
-    //             //placing the new image on the site
-    //             if (filmNumber === 1) //place poster on the left
-    //             {
-    //                 movie1TitleText.text(content.Title);
-    //                 $("#filmOne").prepend(thisImage);
-    //             }
-    //             else if (filmNumber === 2) //place poster on the right
-    //             {
-    //                 movie2TitleText.text(content.Title);
-    //                 $("#filmTwo").prepend(thisImage);
-    //             }
-    //         }
-    //         else
-    //         {
-    //             populateFilms(filmNumber); //regenerate the id and try again.
-    //             console.log("Regenerating film");
-    //         }
-    //     })
-    //     .catch(error => {
-    //         console.error("Error in omdbAPI");
-    //     });
+    console.log(randomMovie);
+    generateFilmContent(filmNumber, chosenMovie);
 }
-
-generateRandomFilm();
-populateFeedback("Congratulations");
-//populateFeedback("Try again next time");
-populateFilms(1);
-populateFilms(2);
