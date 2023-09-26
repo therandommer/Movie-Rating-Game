@@ -81,7 +81,7 @@ function populateFilms(filmNumber) {
         {
             console.log(content);
             //check if the id is valid and the content has a rating and the content has a poster to display. Also (tries to) filter NSFW content
-            if (content.response = true && content.imdbRating > 0.1 && content.Poster != "N/A" && content.Genre != "Adult" && content.Rated != "R") {
+            if (content.response = true && content.imdbRating > 0.5 && content.Poster != "N/A" && content.Genre != "Adult" && content.Rated != "R") {
                 //referencing new image to create
                 let thisImage = $("<img id='temp'>");
 

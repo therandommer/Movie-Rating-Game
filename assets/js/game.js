@@ -1,8 +1,8 @@
 //variable declaration
 let rating1 = 5; //!set to this value just to test game logic
 let rating2 = 0;
-let feedbackTimer = 5000; //time in ms that the feedback will be displayed on the screen for.
-let movieHideTimer = 3000; //time in ms before the existing films will be hidden.
+let feedbackTimer = 100; //time in ms that the feedback will be displayed on the screen for.
+let movieHideTimer = 10; //time in ms before the existing films will be hidden.
 let movieRevealTimer = 2000; //time in ms before the existing films will be revealed to the player.
 
 //player variables
@@ -19,8 +19,10 @@ const filmOneButton = $("#filmOneBtn");
 const filmTwoButton = $("#filmTwoBtn");
 const lifeText = $("#lives");
 const scoreText = $("#score");
+const finalScoreText = $("#final-score");
 const feedbackText = $("#feedbackText");
 const feedbackGif = $("#feedbackGif");
+const endScreen = $("#end-screen");
 
 //---Functions and logic---
 
@@ -71,6 +73,8 @@ function revealFeedback(willHide, isCorrect) {
         }
         else
         {
+            feedbackText.removeClass("hide");
+            feedbackGif.removeClass("hide");
             feedbackText.text("Game over");
             populateFeedback("Game Over");
         }
@@ -119,14 +123,22 @@ function resetState() {
     lifeText.text(lives);
     scoreText.text(score);
     feedbackText.text("");
+    filmOneButton.removeClass("hide");
+    filmTwoButton.removeClass("hide");
+    endScreen.addClass("hide");
     revealFeedback(false, true);
     revealMovies(true);
 }
 
 function onGameOver() {
     gameOver = true;
+    finalScoreText.text(score);
+    lifeText.text("0");
     revealMovies(false);
     revealFeedback(false, false);
+    filmOneButton.addClass("hide");
+    filmTwoButton.addClass("hide");
+    endScreen.removeClass("hide");
     //!reveal game over ui here
 }
 
