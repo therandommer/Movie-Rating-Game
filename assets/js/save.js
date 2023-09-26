@@ -18,14 +18,14 @@ function storeHighScore () {
         alert("Score saved!")
         let highScore = JSON.parse(localStorage.getItem("highscores")) || []
         let newScore = {
-            score: timer,
+            total: score,
             name: initials
         }
     
         highScore.push(newScore);
         localStorage.setItem("highscores", JSON.stringify(highScore));
     
-        window.localStorage.href = "highscores.html";
+        window.localStorage.href = "index.html";
     }
 };
 
