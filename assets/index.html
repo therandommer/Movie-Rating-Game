@@ -19,9 +19,10 @@
 </head>
 
 <body>
-    <main>
+
+    <header>
         <!-- the navbar  -->
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top ">
             <div class="container-fluid">
                 <a class="navbar-brand " href="#">Movie Rate <i class="fa-solid fa-camera-retro fa-md"
                         style="color: #3673ec;"></i></a>
@@ -32,17 +33,21 @@
             <h1 class="display-4">Welcome to Movie rate</h1>
             <p class="lead">This is game where you will Compare two movies and decide which movie has the highest rating
             </p>
-            <hr class="my-4">
+            <br>
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                <a class="btn btn-primary btn-lg playBtn" href="game.html" role="button">Play Now </a>
             </p>
         </div>
 
+    </header>
+
+
+    <main>
 
         <div class="container text-center">
             <div class="row justify-content-start">
                 <div class="col-3">
-                    <img src="https://placehold.co/400x400" alt="placeholder">
+                    <img id="imgSize" src="img/avengers.jpg" alt="placeholder">
                 </div>
                 <div class="col-6">
 
@@ -54,8 +59,8 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>name</th>
-                                        <th>score</th>
+                                        <th>Name</th>
+                                        <th>Score</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -76,17 +81,14 @@
                     </div>
                 </div>
                 <div class="col-3">
-                    <img src="https://placehold.co/400x400" alt="placeholder">
+                    <img id="imgSize" src="img/captain.jpg" alt="placeholder">
                 </div>
             </div>
-            <div class="col align-self-center" id="playButton">
-                <button type="button" class="btn btn-success">Play Now </button>
+            <div class="col align-self-center playButton" id="clearButton">
+                <button type="button" class="btn btn-success"> Clear High Score </button>
             </div>
 
         </div>
-
-
-
 
     </main>
 
