@@ -24,7 +24,7 @@ function storeHighScore () {
     
         highScore.push(newScore);
         localStorage.setItem("highscores", JSON.stringify(highScore));
-    
+        alert(highScore);
         window.localStorage.href = "index.html";
     }
 };

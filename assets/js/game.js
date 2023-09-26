@@ -71,8 +71,7 @@ function revealFeedback(willHide, isCorrect) {
                 feedbackTimer
             ); //will hide the elements after a set time
         }
-        else
-        {
+        else {
             feedbackText.removeClass("hide");
             feedbackGif.removeClass("hide");
             feedbackText.text("Game over");
@@ -114,7 +113,6 @@ function revealMovies(willReveal) {
     //!reveal the movies after generation.
     //!hide the movies on game over
 }
-
 //resets any elements and variables on the screen to their default values
 function resetState() {
     gameOver = false;
@@ -129,7 +127,7 @@ function resetState() {
     revealFeedback(false, true);
     revealMovies(true);
 }
-
+//hides game UI, reveals game over UI. Sets states to default values where needed to indicate game over.
 function onGameOver() {
     gameOver = true;
     finalScoreText.text(score);
@@ -139,9 +137,7 @@ function onGameOver() {
     filmOneButton.addClass("hide");
     filmTwoButton.addClass("hide");
     endScreen.removeClass("hide");
-    //!reveal game over ui here
 }
-
 //will handle logic for correct and incorrect guesses.
 function filmGuessed(isCorrect) {
     if (isCorrect) {
@@ -174,6 +170,7 @@ function filmGuessed(isCorrect) {
         }
     }
 }
+//logic comparing the ratings of each film based on which movie was clicked.
 function movieClicked(filmNumber) {
     console.log("movie clicked: " + filmNumber);
     console.log(`Rating 1 is ${rating1} rating 2 is ${rating2}`);
@@ -197,7 +194,6 @@ function movieClicked(filmNumber) {
         filmGuessed(false);
     }
 }
-
 //button listeners, will only continue logic when canBeClicked == true
 filmOneButton.on("click", function (event) {
     event.preventDefault();
@@ -214,8 +210,6 @@ filmTwoButton.on("click", function (event) {
         movieClicked(2);
     }
 });
-
-
 //on initialisation logic
 startGeneration();
 resetState();
