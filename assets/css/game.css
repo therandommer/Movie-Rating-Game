@@ -106,7 +106,7 @@ body, html {
 }
 
 /*size of movie choice buttons*/
-.btn {
+.filmbtn {
   width: 100%; 
   margin-bottom: 3px;
   min-height: 60px;
