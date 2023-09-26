@@ -37,25 +37,32 @@ function revealFeedback(willHide, isCorrect)
     //!enable the text, fill it with correct/incorrect, hide after X seconds
     if(!willHide)
     {
+        let gifToHide = $("#tempGif");
+        gifToHide.remove();
         //setting variables, etc. before revealing objects
         if(isCorrect)
         {
             feedbackText.text(`You guessed correctly!\n ${rating1} VS ${rating2}`);
-            //!happy gif logic
+            populateFeedback("Congratulations");
         }
         else
         {
             feedbackText.text(`You guessed incorrectly!\n ${rating1} VS ${rating2}`);
-            //!sad gif logic
+            populateFeedback("Oof");
         }
         feedbackText.removeClass("hide");
         feedbackGif.removeClass("hide");
-        setTimeout(function(){revealFeedback(willHide, isCorrect);}), feedbackTimer; //will hide the elements after a set time
+        console.log("Hiding the feedback in " + feedbackTimer + " MS");
+        setTimeout(
+            function(){ revealFeedback(true, isCorrect) },
+            feedbackTimer
+          ); //will hide the elements after a set time
     }
     else
     {
         feedbackText.addClass("hide");
         feedbackGif.addClass("hide");
+        console.log("Hiding feedback elements");
     }
     
 }
@@ -88,7 +95,7 @@ function resetState()
     score = defaultScore;
     lifeText.text(lives);
     scoreText.text(score);
-    revealFeedback(false, true);
+    //revealFeedback(false, true);
     revealMovies(false);
 }
 
@@ -97,10 +104,10 @@ function startGeneration()
 {
     //!commented out the following so I can test other things
     generateRandomFilm();
-    populateFeedback("Congratulations");
+    
     //populateFeedback("The Avengers");
-    populateFilms(1);
-    populateFilms(2); 
+    //populateFilms(1);
+    //populateFilms(2); 
 }
 //will handle logic for correct and incorrect guesses.
 function filmGuessed(isCorrect)

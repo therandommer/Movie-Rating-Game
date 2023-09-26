@@ -7,7 +7,8 @@ let giphySearchTerm = "The Matrix"; //what to search FOR TESTING
 let giphyAPIKey = "2XZcXmpvYUadnnAv7e65tvDtSeK2VHSC";
 //---OMDB---
 let omdbMovieSearch = "The Matrix";
-let omdbAPIKey = "81729a7c";
+let omdbAPIKey = "3646905f";
+let omdbAPIKey2 = "81729a7c";
 
 function populateFeedback(gif) {
     let giphyAPIUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&q=${gif}&limit=${giphySearchNumber}&offset=0&rating=pg-13&lang=en&bundle=messaging_non_clips`;
@@ -19,7 +20,7 @@ function populateFeedback(gif) {
         {
             console.log(content.data);
             //referencing new image to create
-            let thisImage = $("<img id='temp'>");
+            let thisImage = $("<img id='tempGif'>");
 
             //setting image attributes
             thisImage.attr('src', content.data[0].images.fixed_height.url);
