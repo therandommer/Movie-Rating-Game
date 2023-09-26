@@ -43,4 +43,15 @@ function displayHighScores (){
         let results = document.querySelector('#highscoreDisplay');
         results.appendChild(li);
     })
+};
+
+function clearScores () {
+    localStorage.removeItem("highscores");
+    window.location.reload();
+
 }
+
+let clearButton = document.querySelector('#clearButton');
+clearButton.addEventListener("click", clearScores);
+
+displayHighScores ( );
