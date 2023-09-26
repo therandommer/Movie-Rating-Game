@@ -2,21 +2,34 @@
     margin-top: 50px;
 }
 
-#playButton {
-    margin-top: 50px;
+.playButton {
+    margin-top: 20px;
 }
 
 .description {
-    margin-left: 30px;
+    padding-left: 30px;
+    background-image: url(../img/backgroundMovie.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 200px;
+    padding-bottom: 200px;
+    color: white;
 }
 
-/* body {
-    min-height: 100vh;
-    background: url(/assets/img/movie-background.jpg);
-    display: flex;
+.btn {
+    margin-top: 100px;
+}
+
+#imgSize {
+    width: 400px;
+    height: 500px;
+}
+
+body {
+    /* display: flex;
     justify-content: center;
-    align-items: center;
-} */
+    align-items: center; */
+}
 
 /* div.table {
     width: 82vw;

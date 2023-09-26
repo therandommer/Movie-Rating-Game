@@ -46,6 +46,15 @@ body, html {
       );
 }
 
+/*back to homepage link*/
+.back-button {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  padding: 2px;
+  font-size: larger;
+}
+
 /*format score counter*/
 #scoreCount {
     font-weight: bold;
@@ -95,6 +104,7 @@ body, html {
     display : none !important;
 }
 
+/*size of movie choice buttons*/
 .btn {
   width: 100%; 
   margin-bottom: 3px;
