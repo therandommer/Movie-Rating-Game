@@ -16,8 +16,15 @@
     color: white;
 }
 
-.btn {
+#playNowBtn {
     margin-top: 100px;
+    min-height: 70px;
+    max-width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: x-large;
 }
 
 #imgSize {
@@ -53,4 +60,15 @@ td {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#highScoreBtn {
+    margin-bottom: 100px;
+    min-height: 70px;
+    max-width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: x-large;
 }
