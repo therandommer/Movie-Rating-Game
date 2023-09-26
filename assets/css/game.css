@@ -52,7 +52,7 @@ body, html {
   color: black;
   font-weight: bold;
   padding: 2px;
-  text-shadow: #555;
+  font-size: larger;
 }
 
 /*format score counter*/
