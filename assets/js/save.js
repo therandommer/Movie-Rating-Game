@@ -29,28 +29,11 @@ function storeHighScore () {
     }
 };
 
-//
+//on click for submit score
 let submitButton = $("#submit");
-// console.log(submitButton);
 submitButton.on("click", storeHighScore);
 
-
-// function displayHighScores (){
-//     let highScores = JSON.parse(localStorage.getItem("highscores"));
-// console.log(highScores);
-//     highScores.sort(function(a, b){
-//         return b.score - a.score;
-//     })
-    
-//     highScores.forEach(function(score){
-//         let li = document.createElement("li");
-//         li.textContent = `${score.name.toUpperCase()}  -  ${score.score}`;
-
-//         let results = document.querySelector('#highscoreDisplay');
-//         results.appendChild(li);
-//     })
-// };
-
+//function to clear scores on clear button
 function clearScores () {
     localStorage.removeItem("highscores");
     window.location.reload();
@@ -60,21 +43,6 @@ function clearScores () {
 let clearButton = $('#clearButton');
 clearButton.on("click", clearScores);
 
-// displayHighScores ( );
-
+//reset button functionality to restart game on completion
 let resetGame = $("#reset");
 resetGame.on("click", resetState);
-
-
-// let submitButton = document.querySelector("#submit");
-// submitButton.addEventListener("submit", storeHighScore);
-
-
-// let submitButton = document.querySelector("#submit");
-// submitButton.on("click", function (event) {
-//     event.preventDefault();
-//     if (canBeClicked){
-//         canBeClicked = true;
-//     storeHighScore;
-//     };
-// });
