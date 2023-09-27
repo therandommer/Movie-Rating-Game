@@ -1,7 +1,7 @@
 let initialElement = document.querySelector("#initials");
 let scoreElement = document.querySelector("#score");
 
-
+//function to store highscores
 function storeHighScore () {
     let initials = initialElement.value.trim();
 
@@ -24,7 +24,7 @@ function storeHighScore () {
     
         highScore.push(newScore);
         localStorage.setItem("highscores", JSON.stringify(highScore));
-        alert(highScore);
+        alert("You scored " + newScore.total);
         window.localStorage.href = "index.html";
     }
 };
@@ -48,17 +48,20 @@ function displayHighScores (){
     }
     
 };
+//on click for submit score
+let submitButton = $("#submit");
+submitButton.on("click", storeHighScore);
 
+//function to clear scores on clear button
 function clearScores () {
     localStorage.removeItem("highscores");
     window.location.reload();
 
 }
 
-let clearButton = document.querySelector('#clearButton');
-clearButton.addEventListener("click", clearScores);
+let clearButton = $('#clearButton');
+clearButton.on("click", clearScores);
 
-displayHighScores ( );
-
-let submitButton = document.querySelector("#submit");
-submitButton.addEventListener("click", storeHighScore);
+//reset button functionality to restart game on completion
+let resetGame = $("#reset");
+resetGame.on("click", resetState);
