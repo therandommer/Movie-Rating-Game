@@ -6,7 +6,7 @@ let movieHideTimer = 3000; //time in ms before the existing films will be hidden
 let movieRevealTimer = 2000; //time in ms before the existing films will be revealed to the player.
 
 //player variables
-let defaultLives = 1; //CHANGE THIS BACK TO 5
+let defaultLives = 5; 
 let lives = 0;
 let defaultScore = 0;
 let score = 0;
