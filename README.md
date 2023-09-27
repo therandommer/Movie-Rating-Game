@@ -33,6 +33,10 @@ You can also restart the game using this UI.
 
 ![GamePage](submission/gamePage.png)
 
+## Game Over
+
+![GameOver](submission/gameOver.png)
+
 ## License
 
 Using MIT License.
