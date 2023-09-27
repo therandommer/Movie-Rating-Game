@@ -154,6 +154,13 @@ body, html {
   align-items: center;
 }
 
+/*format end of game display*/
+#end-screen {
+    text-align: center;
+  border: 1px solid grey;
+  margin-left: 25%;
+  margin-right: 25%;}
+
 /*border for pulled gif*/
 #feedbackGif img {
   padding: 2px; 

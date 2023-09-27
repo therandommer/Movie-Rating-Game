@@ -10,7 +10,7 @@
     <!--css links-->
     <link rel="stylesheet" href="../assets/css/reset.css"/>
     <link rel="stylesheet" href="../assets/css/game.css"/>
-    <title>Movie Rate</title>
+    <title>Movie Rate - Game</title>
 </head>
 
 <body>
@@ -43,7 +43,7 @@
 
     <!--score and timer display columns-->
     <div class="container text-center" id="topRow">
-      <a class="back-button" href="../assets/index.html">BACK TO HOMEPAGE</a>
+      <a class="back-button" href="../index.html">BACK TO HOMEPAGE</a>
       <div class="row justify-content-evenly">
         <div class="col-4">
             <div id="scoreCount"><i class="fa-regular fa-star"></i> Score: <span id="score">
@@ -90,13 +90,12 @@
         </div>
     </div>
 
+      <!--end screen-->
     <div id="end-screen" class="hide">
       <h2>All done!</h2>
       <p>Your final score is <span id="final-score"></span>.</p>
-      <p>
-        Enter up to 3 initials : <input type="text" id="initials" max="3" />
-        <button id="submit">Submit</button>
-      </p>
+      <p>Enter up to 3 initials : <input type="text" id="initials" max="3" />
+        <button id="submit">Submit</button></p>
       <button class="btn btn-primary btn-success" id="reset" href="#">REPLAY</button>
     </div>
     
