@@ -1,7 +1,7 @@
 let initialElement = document.querySelector("#initials");
 let scoreElement = document.querySelector("#score");
 
-
+//function to store highscores
 function storeHighScore () {
     let initials = initialElement.value.trim();
 
@@ -24,26 +24,32 @@ function storeHighScore () {
     
         highScore.push(newScore);
         localStorage.setItem("highscores", JSON.stringify(highScore));
-        alert(highScore);
+        alert("You scored " + newScore.total);
         window.localStorage.href = "index.html";
     }
 };
 
-function displayHighScores (){
-    let highScores = JSON.parse(localStorage.getItem("highscores"));
+//
+let submitButton = $("#submit");
+// console.log(submitButton);
+submitButton.on("click", storeHighScore);
 
-    highScores.sort(function(a, b){
-        return b.score - a.score;
-    })
+
+// function displayHighScores (){
+//     let highScores = JSON.parse(localStorage.getItem("highscores"));
+// console.log(highScores);
+//     highScores.sort(function(a, b){
+//         return b.score - a.score;
+//     })
     
-    highScores.forEach(function(score){
-        let li = document.createElement("li");
-        li.textContent = `${score.name.toUpperCase()}  -  ${score.score}`;
+//     highScores.forEach(function(score){
+//         let li = document.createElement("li");
+//         li.textContent = `${score.name.toUpperCase()}  -  ${score.score}`;
 
-        let results = document.querySelector('#highscoreDisplay');
-        results.appendChild(li);
-    })
-};
+//         let results = document.querySelector('#highscoreDisplay');
+//         results.appendChild(li);
+//     })
+// };
 
 function clearScores () {
     localStorage.removeItem("highscores");
@@ -51,10 +57,24 @@ function clearScores () {
 
 }
 
-let clearButton = document.querySelector('#clearButton');
-clearButton.addEventListener("click", clearScores);
+let clearButton = $('#clearButton');
+clearButton.on("click", clearScores);
 
-displayHighScores ( );
+// displayHighScores ( );
 
-let submitButton = document.querySelector("#submit");
-submitButton.addEventListener("click", storeHighScore);
+let resetGame = $("#reset");
+resetGame.on("click", resetState);
+
+
+// let submitButton = document.querySelector("#submit");
+// submitButton.addEventListener("submit", storeHighScore);
+
+
+// let submitButton = document.querySelector("#submit");
+// submitButton.on("click", function (event) {
+//     event.preventDefault();
+//     if (canBeClicked){
+//         canBeClicked = true;
+//     storeHighScore;
+//     };
+// });

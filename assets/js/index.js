@@ -19,6 +19,27 @@ function openPage(pageName, elmnt, color) {
     elmnt.style.backgroundColor = color;
   }
   
-  // Get the element with id="defaultOpen" and click on it
-  document.getElementById("defaultOpen").click();
-console.log("HI!");
+  function displayHighScores (){
+    let highScores = JSON.parse(localStorage.getItem("highscores"));
+console.log(highScores);
+    highScores.sort(function(a, b){
+        return b.score - a.score;
+    })
+    
+    highScores.forEach(function(score){
+        let li = document.createElement("li");
+        console.log(score);
+        const tdData = `<td>${score.name.toUpperCase()}</td><td>${score.total}</td>`
+        //li.textContent = `${score.name.toUpperCase()}  -  ${score.score}`;
+
+        let results = $('#highscoreDisplay');
+        console.log(results);
+        results.append(tdData);
+    })
+};
+displayHighScores ();
+
+
+//   // Get the element with id="defaultOpen" and click on it
+//   $("defaultOpen").click();
+// console.log("HI!");
