@@ -21,6 +21,7 @@ const lifeText = $("#lives");
 const scoreText = $("#score");
 const finalScoreText = $("#final-score");
 const feedbackText = $("#feedbackText");
+const canClickText = $("#canClickParagraph");
 const feedbackGif = $("#feedbackGif");
 const endScreen = $("#end-screen");
 
@@ -37,13 +38,14 @@ function setRating2(rating) {
 //reusable start generation function. Can be called every time the films need to be regenerated (ie after button click, etc.)
 function startGeneration() {
     //!commented out the following so I can test other things
-    generateRandomFilm();
     //!remove the below when API keys work
-    rating1 = Math.floor(Math.random() * 10);
-    rating2 = Math.floor(Math.random() * 10);
+    // rating1 = Math.floor(Math.random() * 10);
+    // rating2 = Math.floor(Math.random() * 10);
     //!Uncomment this when API keys work
-    //populateFilms(1);
-    //populateFilms(2); 
+    //generates random api string and populates the elements left (1) and right (2) with movies
+    //console.log("Generating films");
+    populateFilms(1);
+    populateFilms(2); 
 }
 //if willHide is true, will hide the feedbackElements instead of reveal it. isCorrect determines if the gif to reveal is happy or sad, and determines what the feedback text will say
 function revealFeedback(willHide, isCorrect) {
@@ -64,7 +66,7 @@ function revealFeedback(willHide, isCorrect) {
             }
             feedbackText.removeClass("hide");
             feedbackGif.removeClass("hide");
-            console.log("Hiding the feedback in " + feedbackTimer + " MS");
+            //console.log("Hiding the feedback in " + feedbackTimer + " MS");
             setTimeout(
                 function () { revealFeedback(true, isCorrect) },
                 feedbackTimer
@@ -81,7 +83,7 @@ function revealFeedback(willHide, isCorrect) {
     else {
         feedbackText.addClass("hide");
         feedbackGif.addClass("hide");
-        console.log("Hiding feedback elements");
+        // console.log("Hiding feedback elements");
     }
 
 }
@@ -93,14 +95,18 @@ function removeMovies() {
 //if willHide is true, will hide the main game elements instead of reveal it.
 //will also remove existing movies, generate new movies and unlock player input
 function revealMovies(willReveal) {
-    let movies = $(".temp");
+    let movies = $(".tempFilm");
     if (willReveal) {
         movies.removeClass("hide");
         canBeClicked = true;
+        canClickText.text("Can click: TRUE");// feedback for when the player can click
     }
     else {
         movies.addClass("hide");
         if (!gameOver) {
+            movies.remove(); //deletes existing movies.
+            filmOneButton.text("");
+            filmTwoButton.text("");
             startGeneration(); //regenerates the movies on both sides
             setTimeout(
                 function () { revealMovies(true) },
@@ -124,14 +130,14 @@ function resetState() {
     filmTwoButton.removeClass("hide");
     endScreen.addClass("hide");
     revealFeedback(false, true);
-    revealMovies(true);
+    revealMovies(false); //will also generate a new movie.
 }
 //hides game UI, reveals game over UI. Sets states to default values where needed to indicate game over.
 function onGameOver() {
     gameOver = true;
     finalScoreText.text(score);
     lifeText.text("0");
-    revealMovies(false);
+    revealMovies(false); //will also generate a new movie
     revealFeedback(false, false);
     filmOneButton.addClass("hide");
     filmTwoButton.addClass("hide");
@@ -143,7 +149,7 @@ function filmGuessed(isCorrect) {
         console.log("player guessed correct");
         score += guessValue;
         scoreText.text(score);
-        console.log("New score: " + score);
+        //console.log("New score: " + score);
         revealFeedback(false, true);
         setTimeout(
             function () { revealMovies(false) },
@@ -155,7 +161,7 @@ function filmGuessed(isCorrect) {
         lives--;
         if (lives > 0) {
             lifeText.text(lives);
-            console.log("New lives: " + lives);
+            //console.log("New lives: " + lives);
             revealFeedback(false, false);
             setTimeout(
                 function () { revealMovies(false) },
@@ -171,7 +177,7 @@ function filmGuessed(isCorrect) {
 }
 //logic comparing the ratings of each film based on which movie was clicked.
 function movieClicked(filmNumber) {
-    console.log("movie clicked: " + filmNumber);
+    //console.log("movie clicked: " + filmNumber);
     console.log(`Rating 1 is ${rating1} rating 2 is ${rating2}`);
     let winningFilm = 0;
     if (rating1 > rating2) {
@@ -198,6 +204,7 @@ filmOneButton.on("click", function (event) {
     event.preventDefault();
     if (canBeClicked) {
         canBeClicked = false;
+        canClickText.text("Can click: FALSE");
         movieClicked(1);
     }
 
@@ -206,11 +213,9 @@ filmTwoButton.on("click", function (event) {
     event.preventDefault();
     if (canBeClicked) {
         canBeClicked = false;
+        canClickText.text("Can click: FALSE");
         movieClicked(2);
     }
 });
 //on initialisation logic
-startGeneration();
-resetState();
-revealMovies(false); //reveals the movie elements
-revealFeedback(true); //hides any feedback elements
+resetState(); 

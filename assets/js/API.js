@@ -83,7 +83,7 @@ function populateFilms(filmNumber) {
             //check if the id is valid and the content has a rating and the content has a poster to display. Also (tries to) filter NSFW content
             if (content.response = true && content.imdbRating > 0.5 && content.Poster != "N/A" && content.Genre != "Adult" && content.Rated != "R") {
                 //referencing new image to create
-                let thisImage = $("<img id='temp'>");
+                let thisImage = $("<img class='tempFilm'>");
 
                 //setting image attributes
                 thisImage.attr('src', content.Poster);
@@ -105,10 +105,11 @@ function populateFilms(filmNumber) {
             }
             else {
                 populateFilms(filmNumber); //regenerate the id and try again.
-                console.log("Regenerating film");
+                //console.log("Regenerating film");
             }
         })
         .catch(error => {
             console.error("Error in omdbAPI");
+            console.log(error);
         });
 }
