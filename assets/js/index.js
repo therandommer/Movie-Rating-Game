@@ -18,23 +18,6 @@ function openPage(pageName, elmnt, color) {
     // Add the specific color to the button used to open the tab content
     elmnt.style.backgroundColor = color;
   }
-  
-  //function to display highscores in table
-  function displayHighScores (){
-    let highScores = JSON.parse(localStorage.getItem("highscores"));
-console.log(highScores);
-    highScores.sort(function(a, b){
-        return b.score - a.score;
-    })
-    
-    highScores.forEach(function(score){
-        let li = document.createElement("li");
-        console.log(score);
-        const tdData = `<td>${score.name.toUpperCase()}</td><td>${score.total}</td>`
 
-        let results = $('#highscoreDisplay');
-        console.log(results);
-        results.append(tdData);
-    })
-};
-displayHighScores ();
+  //calls the function in save.js on page initialisation
+  displayHighScores();

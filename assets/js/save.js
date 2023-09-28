@@ -29,25 +29,38 @@ function storeHighScore () {
     }
 };
 
+//pulls data from highscores and dispalys it onto the table elements
 function displayHighScores (){
     let highScores = JSON.parse(localStorage.getItem("highscores"));
-
-    if(highScores != null)
+    console.log(highScores);
+    //only run the following function if there are highscores to display in the correct table
+    if(highScores != null && document.URL.includes("index.html"))
     {
         highScores.sort(function(a, b){
-            return b.score - a.score;
+            return b.total - a.total;
         })
         
         highScores.forEach(function(score){
-            let li = document.createElement("li");
-            li.textContent = `${score.name.toUpperCase()}  -  ${score.score}`;
-    
-            let results = document.querySelector('#highscoreDisplay');
-            results.appendChild(li);
+            //adjusted to use jquery and table elements instead of a list
+
+            console.log(score);
+            let scoreTable = $("#highscoreDisplay");
+            let newRow = $("<tr>");
+            let newName = $("<td class ='nameElement'>");
+            let newScore = $("<td class='scoreElement'>");
+            
+            newName.html(`${score.name.toUpperCase()}`);
+            newScore.html(`${JSON.stringify(score.total)}`);
+
+            newRow.append(newName);
+            newRow.append(newScore);
+            scoreTable.append(newRow);
+
         })
     }
     
 };
+
 //on click for submit score
 let submitButton = $("#submit");
 submitButton.on("click", storeHighScore);
@@ -56,12 +69,15 @@ submitButton.on("click", storeHighScore);
 function clearScores () {
     localStorage.removeItem("highscores");
     window.location.reload();
-
 }
 
 let clearButton = $('#clearButton');
 clearButton.on("click", clearScores);
 
-//reset button functionality to restart game on completion
-let resetGame = $("#reset");
-resetGame.on("click", resetState);
+//only checks for the reset button on the game page
+if (document.URL.includes("game.html") ) {
+    let resetGame = $("#reset");
+    console.log("Reset button found" + resetGame);
+    resetGame.on("click", resetState);
+}
+
