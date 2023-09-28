@@ -4,27 +4,27 @@ let scoreElement = document.querySelector("#score");
 //function to store highscores
 function storeHighScore () {
     let initials = initialElement.value.trim();
-
+    let formFeedbackText = $("#formFeedback");
     if (initials.length > 3) {
-        alert("No more than 3 initials")
+        formFeedbackText.text("No more than 3 initials");
     }
     
     else if (initials.length === 0) {
-        alert("Please enter up to 3 initials")
+        formFeedbackText.text("Please enter up to 3 initials");
     }
     
     
     else {
-        alert("Score saved!")
+        formFeedbackText.text("Score saved!");
         let highScore = JSON.parse(localStorage.getItem("highscores")) || []
         let newScore = {
             total: score,
             name: initials
-        }
+        };
     
         highScore.push(newScore);
         localStorage.setItem("highscores", JSON.stringify(highScore));
-        alert("You scored " + newScore.total);
+        //alert("You scored " + newScore.total);
         window.localStorage.href = "index.html";
     }
 };
@@ -42,7 +42,7 @@ function displayHighScores (){
         
         highScores.forEach(function(score){
             //adjusted to use jquery and table elements instead of a list
-
+            
             console.log(score);
             let scoreTable = $("#highscoreDisplay");
             let newRow = $("<tr>");
