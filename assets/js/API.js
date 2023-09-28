@@ -71,7 +71,7 @@ function generateRandomFilm() {
 //film = search query, filmNumber = if it will populate filmOne(1) or filmTwo(2)
 function populateFilms(filmNumber) {
     let searchTerm = generateRandomFilm();
-    let omdbAPIURL = `http://www.omdbapi.com/?apikey=${omdbAPIKey}&i=${searchTerm}`;
+    let omdbAPIURL = `http://www.omdbapi.com/?apikey=${omdbAPIKey2}&i=${searchTerm}`;
     console.log("OMDB API URL = " + omdbAPIURL);
     fetch(omdbAPIURL)
         .then(function (response) {
