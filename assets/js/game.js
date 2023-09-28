@@ -2,11 +2,11 @@
 let rating1 = 5; //!set to this value just to test game logic
 let rating2 = 0;
 let feedbackTimer = 4000; //time in ms that the feedback will be displayed on the screen for.
-let movieHideTimer = 2000; //time in ms before the existing films will be hidden.
+let movieHideTimer = 1500; //time in ms before the existing films will be hidden.
 let movieRevealTimer = 1000; //time in ms before the existing films will be revealed to the player.
 
 //player variables
-let defaultLives = 5;
+let defaultLives = 3;
 let lives = 0;
 let defaultScore = 0;
 let score = 0;

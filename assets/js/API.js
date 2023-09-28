@@ -71,7 +71,7 @@ function generateRandomFilm() {
 //film = search query, filmNumber = if it will populate filmOne(1) or filmTwo(2)
 function populateFilms(filmNumber) {
     let searchTerm = generateRandomFilm();
-    let omdbAPIURL = `http://www.omdbapi.com/?apikey=${omdbAPIKey2}&i=${searchTerm}`;
+    let omdbAPIURL = `https://www.omdbapi.com/?apikey=${omdbAPIKey2}&i=${searchTerm}`;
     console.log("OMDB API URL = " + omdbAPIURL);
     fetch(omdbAPIURL)
         .then(function (response) {
@@ -81,7 +81,7 @@ function populateFilms(filmNumber) {
         {
             console.log(content);
             //check if the id is valid and the content has a rating and the content has a poster to display. Also (tries to) filter NSFW content
-            if (content.response = true && content.imdbRating > 0.5 && content.Poster != "N/A" && content.Genre != "Adult" && content.Rated != "R") {
+            if (content.response = true && content.imdbRating > 0.5 && content.Poster != "N/A" && content.Genre != "Adult" && content.Rated != "R" && content.Rated != "18" && content.Rated != "N/A") {
                 //referencing new image to create
                 let thisImage = $("<img class='tempFilm'>");
 
